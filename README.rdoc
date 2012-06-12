@@ -485,6 +485,9 @@ By default Geocoder will rescue any exceptions raised by calls to the geocoding 
 
   Geocoder::Configuration.always_raise = [SocketError, TimeoutError]
 
+Alternatively, if you want Geocoder to raise an error every time there's an issue, you can set <tt>always_raise</tt> to <tt>true</tt>:
+
+  Geocoder::Configuration.always_raise = true
 
 == Known Issue
 

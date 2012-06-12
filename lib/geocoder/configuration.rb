@@ -74,6 +74,7 @@ module Geocoder
       # exceptions that should not be rescued by default
       # (if you want to implement custom error handling);
       # supports SocketError and TimeoutError
+      # (and true to raise all exceptions)
       @always_raise = []
 
       # calculation options

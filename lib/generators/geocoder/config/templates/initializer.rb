@@ -16,6 +16,7 @@ Geocoder.configure do
   ## exceptions that should not be rescued by default
   ## (if you want to implement custom error handling);
   ## supports SocketError and TimeoutError
+  ## (or true for every exception)
   # config.always_raise = []
 
   ## Calculation options
