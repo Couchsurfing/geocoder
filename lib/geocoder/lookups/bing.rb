@@ -16,7 +16,8 @@ module Geocoder::Lookup
       if doc['statusDescription'] == "OK"
         return doc['resourceSets'].first['estimatedTotal'] > 0 ? doc['resourceSets'].first['resources'] : []
       else
-        warn "Bing Geocoding API error: #{doc['statusCode']} (#{doc['statusDescription']})."
+        raise_error("Bing Geocoding API error: #{doc['statusCode']} (#{doc['statusDescription']}).") or
+          warn "Bing Geocoding API error: #{doc['statusCode']} (#{doc['statusDescription']})."
         return []
       end
     end

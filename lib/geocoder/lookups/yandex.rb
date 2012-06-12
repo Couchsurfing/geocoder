@@ -13,14 +13,16 @@ module Geocoder::Lookup
     def results(query, reverse = false)
       return [] unless doc = fetch_data(query, reverse)
       if err = doc['error']
-        warn "Yandex Geocoding API error: #{err['status']} (#{err['message']})."
+        raise_error("Yandex Geocoding API error: #{err['status']} (#{err['message']}).") or
+          warn "Yandex Geocoding API error: #{err['status']} (#{err['message']})."
         return []
       end
       if doc = doc['response']['GeoObjectCollection']
         meta = doc['metaDataProperty']['GeocoderResponseMetaData']
         return meta['found'].to_i > 0 ? doc['featureMember'] : []
       else
-        warn "Yandex Geocoding API error: unexpected response format."
+        raise_error("Yandex Geocoding API error: unexpected response format.") or
+          warn "Yandex Geocoding API error: unexpected response format."
         return []
       end
     end

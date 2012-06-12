@@ -15,7 +15,8 @@ module Geocoder::Lookup
       if doc = doc['ResultSet'] and doc['Error'] == 0
         return doc['Found'] > 0 ? doc['Results'] : []
       else
-        warn "Yahoo Geocoding API error: #{doc['Error']} (#{doc['ErrorMessage']})."
+        raise_error("Yahoo Geocoding API error: #{doc['Error']} (#{doc['ErrorMessage']}).") or
+          warn "Yahoo Geocoding API error: #{doc['Error']} (#{doc['ErrorMessage']})."
         return []
       end
     end

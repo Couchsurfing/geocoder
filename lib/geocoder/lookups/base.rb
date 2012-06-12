@@ -129,8 +129,8 @@ module Geocoder
         else
           JSON.parse(raw_data)
         end
-      rescue
-        warn "Geocoding API's response was not valid JSON."
+      rescue => err
+        raise_error(err) or warn "Geocoding API's response was not valid JSON."
       end
 
       ##
